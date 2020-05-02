@@ -1,23 +1,34 @@
-<nav class="navigation pure-g">
-	{{ if .Site.Params.showNavTitle }}
-	<section class="pure-u-1 pure-u-md-1-2 nav-left">
-    <h1 class="nav-title title-shadow white">{{ .Site.Title }}</h1>
-  </section>
-  <section class="pure-u-1 pure-u-md-1-2 nav-right">
-    {{ with .Site.Menus.main}}
-      {{ range . }}
-        <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
-      {{ end }}
-    {{ end }}
-  </section>
-  {{ else }}
-  <section class="pure-u-1 nav-right">
-    {{ with .Site.Menus.main}}
-      {{ range . }}
-        <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
-      {{ end }}
-    {{ end }}
-  </section>
-  {{ end }}
-<!-- -*- engine:go -*-  -->
+{{/* -*- engine:go -*- */}}
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        {{ if .Site.Params.showNavTitle }}
+            <a class="navbar-item" href="{{ .URL  }}">
+                {{ .Site.Title  }}
+            </a>
+        {{ end }}
+        <a role="button"
+           id="navBarBurger"
+           class="navbar-burger burger"
+           aria-label="menu"
+           aria-expanded="false"
+           data-target="navBarMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+
+    </div>
+    <div class="navbar-menu" id="navBarMenu">
+        <!-- hidden on mobile -->
+        <div class="navbar-start">
+            {{ with .Site.Menus.main }}
+                {{ range .  }}
+                    <a class="navbar-item" href="{{ .URL | relLangURL  }}">
+                        {{ .Name  }}
+                    </a>
+                {{  end }}
+            {{  end }}
+        </div>
+        <div class="navbar-end"></div>
+    </div>
 </nav>

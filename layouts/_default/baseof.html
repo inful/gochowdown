@@ -42,4 +42,17 @@
       {{ template "_internal/google_analytics.html" . }}
     {{ end }}
   </body>
+        <script type="text/javascript">
+        document.getElementById("navBarBurger").addEventListener ("click", toggleNav);
+         function toggleNav() {
+             console.log("called")
+                var nav = document.getElementById("navBarMenu");
+                var className = nav.getAttribute("class");
+                if(className == "navbar-menu") {
+                    nav.className = "navbar-menu is-active";
+                } else {
+                    nav.className = "navbar-menu";
+                }
+        }
+    </script>
 </html>

@@ -36,7 +36,7 @@
                             <!-- list components that make up recipe -->
                             {{ range . }}
                                 <div class="list-item">
-                                    {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}
+                                    {{ with ( . ) }}{{ partial "recipe_item.html" . }}{{ end }}
                                 </div>
                             {{ end }}
                         </div>
@@ -48,7 +48,7 @@
                             <!-- list ingredients that make up recipe -->
                             {{ range . }}
                                 <div class="list-item">
-                                    {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}
+                                    {{ with ( . ) }}{{ partial "recipe_item.html" . }}{{ end }}
                                 </div>
                             {{ end }}
                         </div>
@@ -60,7 +60,7 @@
                     <ul itemprop="recipeInstructions">
                         {{ range .Params.Directions }}
                             <li>
-                                {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}</li>
+                                {{ with ( . | markdownify) }}{{ partial "recipe_instruction.html" . }}{{ end }}</li>
                         {{ end }}
                     </ul>
                 </div>

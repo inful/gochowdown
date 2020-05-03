@@ -1,5 +1,9 @@
 {{/* -*- engine:go -*- */}}
 <div class="field">
-    <input class="is-checkradio is-success" type="checkbox" id="{{ md5 . }}">
-    <label for="{{ md5 . }}">{{ . }}</label>
+    <input class="is-checkradio is-success" type="checkbox" id="{{ md5 .ingredient }}">
+    <label for="{{ md5 .ingredient }}" class="ingredient">
+        <span class="value">{{ .value }}</span>
+        <span class="type">{{ .type }}</span>
+        {{ .ingredient }}
+    </label>
 </div>

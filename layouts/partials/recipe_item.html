@@ -1,8 +1,5 @@
 {{/* -*- engine:go -*- */}}
-<div class="checkbox-container">
-<label class="checkbox-label">
-  <input type="checkbox">
-  <span class="checkbox-custom rectangular"></span>
-</label>
-<div class="input-title">{{ . }}</div>
-
+<div class="field">
+    <input class="is-checkradio is-success" type="checkbox" id="{{ md5 . }}">
+    <label for="{{ md5 . }}">{{ . }}</label>
+</div>

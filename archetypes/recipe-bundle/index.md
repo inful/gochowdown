@@ -21,17 +21,9 @@ prepTime: 15
 cookTime: 45
 
 ingredients:
-- 1 16 oz. box of something
-- 1 12-ounce can something else
-- 3 eggs
-- 1/2 cup unsalted butter
-- 2 cups cheddar cheese, shredded and divided
-- 1 cup mozzarella cheese, shredded
-- 2 tablespoons feta cheese, crumbled
-- 1 cup provolone cheese, cut into small pieces
-- 1/2 cup smoked Gouda cheese, shredded
-- 4 teaspoons salt, divided
-- 2 teaspoons black pepper
+- ingredient: box of something
+  value: 16 
+  type: oz 
 
 directions:
 - Preheat oven to 350˚F/180˚C.

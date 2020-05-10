@@ -2,8 +2,8 @@
 <div class="field">
     <input class="is-checkradio is-success" type="checkbox" id="{{ md5 .ingredient }}">
     <label for="{{ md5 .ingredient }}">
-        <span class="value">{{ .value }}</span>
-        <span class="type">{{ .type }}</span>
-        <span class="p-ingredient">{{ .ingredient }}</span>
+        <span class="value amount">{{ .value }}</span>
+        <span class="type @type">{{ .type }}</span>
+        <span class="p-ingredient ingredient name">{{ .ingredient }}</span>
     </label>
 </div>

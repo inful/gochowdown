@@ -6,19 +6,18 @@
     <!-- call up the image and image credit link -->
     {{ with .Params.Image }}
         <section class="section" >
-            <div class="xs-p2">
-                <img itemprop="image" src="{{ . }}" />
+            <div class="box">
+                <img class="photo image" src="{{ . }}" />
             </div>
     {{ else }}
             {{ range first 1 (.Resources.ByType "image") }}
-                <div class="xs-p2">
-                    <img itemprop="image" src="{{$.Site.BaseURL}}{{ .RelPermalink }}" />
+                <div class="box">
+                    <img class="photo image" src="{{$.Site.BaseURL}}{{ .RelPermalink }}" />
                 </div>
             {{ end }}
         </section>
     {{ end }}
-<div class="h-recipe hrecipe">
-    <section class="section">
+    <div class="h-recipe hrecipe box">
         <div class="container">
             <!-- call up the main recipe title and content -->
             <div class="title is-1 fn p-name">{{ .Title }} </div>
@@ -26,24 +25,22 @@
             <div class="container summary description">
                 {{.Content}}
             </div>
-    </section>
-    <!-- call up recipe and directions -->
-    <section class="section">
-        <div class="container">
-            <!-- check if it's a component-based recipe -->
-            {{ with .Params.Components}}
-                <h3 class="subtitle is-3">Components</h3>
-                <div class="list">
-                    <!-- list components that make up recipe -->
-                    {{ range . }}
-                        <div class="list-item">
-                            {{ with ( . ) }}{{ partial "recipe_item.html" . }}{{ end }}
-                        </div>
-                    {{ end }}
-                </div>
-            {{ end }}
-            {{ with .Params.Ingredients }}
-                <div class="subtitle is-4">Ingredienser</div>
+            <!-- call up recipe and directions -->
+            <div class="container">
+                <!-- check if it's a component-based recipe -->
+                {{ with .Params.Components}}
+                    <h3 class="subtitle is-3">Components</h3>
+                    <div class="list">
+                        <!-- list components that make up recipe -->
+                        {{ range . }}
+                            <div class="list-item">
+                                {{ with ( . ) }}{{ partial "recipe_item.html" . }}{{ end }}
+                            </div>
+                        {{ end }}
+                    </div>
+                {{ end }}
+                {{ with .Params.Ingredients }}
+                    <div class="subtitle is-4">Ingredienser</div>
                     <div class="list">
                         <!-- list ingredients that make up recipe -->
                         {{ range . }}
@@ -52,75 +49,72 @@
                             </div>
                         {{ end }}
                     </div>
-            {{ end }}
-    </section>
-    <!-- Directions -->
-    <section class="section">
-        <div class="container">
-            <div class="subtitle is-3">Fremgangsm&aring;te</div>
-            <div class="list" >
-                {{ range .Params.Directions }}
-                    <div class="list-item">
-                        {{ with ( . | markdownify) }}{{ partial "recipe_instruction.html" . }}{{ end }}
-                    </div>
                 {{ end }}
-            </div>
-        </div>
-        </div>
-        <!-- end recipe and directions -->
-    </section>
-    <!-- check if it's a component-based recipe, render it -->
-    {{ with .Params.Components }}
-        <section class="section">
-            <div class="components bg-darken-2 p2 mt3 mb3 center">
-                &darr; This is a <strong class="blue">component-based recipe</strong> (fancy talk for making the dish in pieces, then assembling). &darr;
-            </div>
-            <div class="clearfix mxn2">
-                {{ range  . }}
-                    {{ $compTitle := . }}
-                    <div class="sm-col sm-col-4 px2 recipeItems">
-                        {{ range where $.Site.Pages "Title" $compTitle }}
-                            <h4 class="blue center">{{ .Title }}</h4>
-                            {{ range (.Resources.ByType "image") }}
-                                <div class="image ratio bg-cover" style="background-image:url({{$.Site.BaseURL}}{{ .RelPermalink }});">
-                                    <img class="hide" itemprop="photo" src="{{$.Site.BaseURL}}{{ .RelPermalink }}" />
-                                </div>
-                            {{ end }}
-                            {{ if .Params.Imagecredit }}
-                                <a href="{{ .Params.Imagecredit }}" class="right">
-                                    <svg class="js-geomicon geomicon" width="14" height="14" data-icon="camera" viewBox="0 0 32 32" style="fill:currentcolor">
-                                        <title>camera icon</title>
-                                        <path d="M0 6 L8 6 L10 2 L22 2 L24 6 L32 6 L32 28 L0 28 z M9 17 A7 7 0 0 0 23 17 A7 7 0 0 0 9 17"></path>
-                                    </svg>
-                                </a>
-                            {{ end }}
-                            <h4 class="blue regular xs-center">Ingredients</h4>
-                            <ul class="ingredients" itemprop="ingredients">
-                                {{ range .Params.Ingredients }}
-                                    <li itemprop="ingredient">
-                                        {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}
-                                    </li>
-                                {{ end }}
-                            </ul>
-                            <h4 class="blue regular xs-center">Steps</h4>
-                            <ul itemprop="instructions">
-                                {{ range .Params.Directions }}
-                                    <li>
-                                        {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}
-                                    </li>
-                                {{ end }}
-                            </ul>
+                <!-- Directions -->
+                <div class="container">
+                    <div class="subtitle is-3">Fremgangsm&aring;te</div>
+                    <div class="list" >
+                        {{ range .Params.Directions }}
+                            <div class="list-item">
+                                {{ with ( . | markdownify) }}{{ partial "recipe_instruction.html" . }}{{ end }}
+                            </div>
                         {{ end }}
                     </div>
-                {{ end }}
+                </div>
             </div>
-        </section>
-    {{ end }}
-    <!-- end components -->
-    <section class="section">
-        {{ with .Params.Category }}{{ partial "taxonomy/category" . }}{{ end }}
-        {{ with .Params.Cuisine }}{{ partial "taxonomy/cuisine" . }}{{ end }}
-        {{ with .Params.Tags }}{{ partial "taxonomy/tags" . }}{{ end }}
-    </section>
+            <!-- end recipe and directions -->
+            <!-- check if it's a component-based recipe, render it -->
+            {{ with .Params.Components }}
+                <section class="section">
+                    <div class="components bg-darken-2 p2 mt3 mb3 center">
+                        &darr; This is a <strong class="blue">component-based recipe</strong> (fancy talk for making the dish in pieces, then assembling). &darr;
+                    </div>
+                    <div class="clearfix mxn2">
+                        {{ range  . }}
+                            {{ $compTitle := . }}
+                            <div class="sm-col sm-col-4 px2 recipeItems">
+                                {{ range where $.Site.Pages "Title" $compTitle }}
+                                    <h4 class="blue center">{{ .Title }}</h4>
+                                    {{ range (.Resources.ByType "image") }}
+                                        <div class="image ratio bg-cover" style="background-image:url({{$.Site.BaseURL}}{{ .RelPermalink }});">
+                                            <img class="hide" itemprop="photo" src="{{$.Site.BaseURL}}{{ .RelPermalink }}" />
+                                        </div>
+                                    {{ end }}
+                                    {{ if .Params.Imagecredit }}
+                                        <a href="{{ .Params.Imagecredit }}" class="right">
+                                            <svg class="js-geomicon geomicon" width="14" height="14" data-icon="camera" viewBox="0 0 32 32" style="fill:currentcolor">
+                                                <title>camera icon</title>
+                                                <path d="M0 6 L8 6 L10 2 L22 2 L24 6 L32 6 L32 28 L0 28 z M9 17 A7 7 0 0 0 23 17 A7 7 0 0 0 9 17"></path>
+                                            </svg>
+                                        </a>
+                                    {{ end }}
+                                    <h4 class="blue regular xs-center">Ingredients</h4>
+                                    <ul class="ingredients" itemprop="ingredients">
+                                        {{ range .Params.Ingredients }}
+                                            <li itemprop="ingredient">
+                                                {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}
+                                            </li>
+                                        {{ end }}
+                                    </ul>
+                                    <h4 class="blue regular xs-center">Steps</h4>
+                                    <ul itemprop="instructions">
+                                        {{ range .Params.Directions }}
+                                            <li>
+                                                {{ with ( . | markdownify) }}{{ partial "recipe_item.html" . }}{{ end }}
+                                            </li>
+                                        {{ end }}
+                                    </ul>
+                                {{ end }}
+                            </div>
+                        {{ end }}
+                    </div>
+                </section>
+            {{ end }}
+            <!-- end components -->
+            <section class="section">
+                {{ with .Params.Category }}{{ partial "taxonomy/category" . }}{{ end }}
+                {{ with .Params.Cuisine }}{{ partial "taxonomy/cuisine" . }}{{ end }}
+                {{ with .Params.Tags }}{{ partial "taxonomy/tags" . }}{{ end }}
+            </section>
         </div>
 {{ end }}

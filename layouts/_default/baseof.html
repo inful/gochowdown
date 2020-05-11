@@ -27,9 +27,7 @@
     </head>
     <body class="has-navbar-fixed-top">
         {{ partial "header.html" . }}
-        <main class="content">
             {{ block "content" . }}{{ end }}
-        </main>
         {{ partial "footer.html" . }}
         {{ if .Site.GoogleAnalytics }}
             {{ template "_internal/google_analytics.html" . }}

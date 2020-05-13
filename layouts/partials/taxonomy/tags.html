@@ -1,12 +1,19 @@
 {{/* -*- engine:go -*- */}}
-    <p class="">
-        {{ if (isset . 0) }} {{/* Hack to check if this is an array https://discourse.gohugo.io/t/how-to-check-if-a-variable-is-string-or-array/7460/7 */}}
-            {{ $humanized := apply . "humanize" "." }}
-            {{ $sorted := sort $humanized }}
-            {{ range $sorted }}
-                <a href="{{ ( printf "tags/%s/" ( . | urlize | lower ) ) | relLangURL }}"><span class="tag">{{ . }}</span></a>
-            {{ end }}
-        {{ else }}
-            <a href="{{ ( printf "tags/%s/" ( . | urlize | lower ) ) | relLangURL }}"><span itemprop="keyword">{{ . | humanize }}</span></a>
+<p class="">
+    {{ if (isset . 0) }} {{/* Hack to check if this is an array https://discourse.gohugo.io/t/how-to-check-if-a-variable-is-string-or-array/7460/7 */}}
+        {{ $humanized := apply . "humanize" "." }}
+        {{ $sorted := sort $humanized }}
+        {{ range $sorted }}
+            <a href="{{ ( printf "tags/%s/" ( . | urlize | lower ) ) | relLangURL }}">
+                <span class="tag">
+                    {{ . }}
+                </span>
+            </a>
         {{ end }}
-    </p>
+    {{ else }}
+        <a href="{{ ( printf "tags/%s/" ( . | urlize | lower ) ) | relLangURL }}">
+            <span class="tag">
+                {{ . | humanize }}
+            </span></a>
+    {{ end }}
+</p>

@@ -1,21 +1,16 @@
 {{/* -*- engine:go -*- */}}
 {{ define "content" }}
-  <section class="container list">
+  <div class="section">
     <h1 class="title">
-      {{- if eq .Kind "taxonomy" -}}
-        {{- .Data.Singular | title -}}
-        {{- print ": " -}}
-      {{- end -}}
-
       {{- .Title -}}
     </h1>
+    <div class="list is-hoverable">
     {{ range .Paginator.Pages }}
-    <div class="pure-g">
-      <div class="pure-u-1">
-        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-      </div>
-    </div>
+        <div class="list-item">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </div>
     {{ end }}
+    </div>
     {{ partial "pagination.html" . }}
-  </section>
+  </div>
 {{ end }}
